@@ -55,18 +55,23 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <ProductPhoto src={categoryPhoto(category.slug, category.shape, category.material)} alt={category.name} className="h-72 w-full rounded-[1.25rem]" />
       </div>
 
-      {category.slug === "bakery-packaging" ? (
+      {category.slug === "food-packaging" ? (
         <section className="mt-12">
           <h2 className="font-serif text-4xl">Sizes people usually ask for</h2>
+          <p className="mt-2 max-w-2xl text-sm text-ink-soft">Cake inches, cupcake counts, and common meal boxes. You can still change the millimetres on the quote.</p>
           <div className="mt-5">
-            <SizeGuide compact={category.slug !== "bakery-packaging"} />
+            <SizeGuide compact={false} />
           </div>
         </section>
       ) : null}
 
       <section className="mt-14">
         <h2 className="font-serif text-4xl">Choose one</h2>
-        <p className="mt-2 text-ink-soft">Open a pack, then send the size and quantity.</p>
+        <p className="mt-2 text-ink-soft">
+          {category.slug === "food-packaging"
+            ? "Pick a cake, donut, meal box, or pouch—then send the size and quantity."
+            : "Open a pack, then send the size and quantity."}
+        </p>
         <div className="mt-6">
           <PackBrowser categorySlug={category.slug} products={category.products} />
         </div>

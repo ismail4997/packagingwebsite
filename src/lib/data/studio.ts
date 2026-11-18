@@ -59,7 +59,7 @@ export const studioPacks: StudioPack[] = [
     detail: "A box for cake, pastry, or confectionery. Die-cutting in the next steps previews a window.",
     format: "box",
     preview: "box",
-    category: "bakery-packaging",
+    category: "food-packaging",
     defaultMaterial: "kraft",
     defaults: { length: 200, width: 200, height: 100 },
   },

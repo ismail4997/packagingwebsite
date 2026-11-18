@@ -48,7 +48,7 @@ export const industries: Industry[] = [
       { title: "Counter bags", text: "Paper bags for loaves, cookies, and items that do not need a rigid box." },
       { title: "Seals", text: "Small stickers that close a box and carry a short brand mark." },
     ],
-    categories: ["bakery-packaging", "paper-bags", "stickers", "labels"],
+    categories: ["food-packaging", "paper-bags", "stickers", "labels"],
     studioPack: "bakery-box",
   },
   {

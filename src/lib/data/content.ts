@@ -57,7 +57,7 @@ export const processSteps = [
 export const customizationSteps = [
   {
     title: "Pick a pack",
-    text: "Food, bakery, window, lid, medicine, syrup, cosmetic box, or a bag.",
+    text: "Food and cake boxes, window packs, lid boxes, medicine, syrup, cosmetics, or bags.",
     href: "/products",
   },
   {

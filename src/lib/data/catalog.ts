@@ -15,6 +15,16 @@ export type PackShape =
   | "industrial"
   | "printed";
 
+export type ProductFamily =
+  | "meals"
+  | "snacks"
+  | "cakes"
+  | "cupcakes"
+  | "donuts"
+  | "pastries"
+  | "sweets"
+  | "carry";
+
 export type Product = {
   slug: string;
   name: string;
@@ -32,6 +42,7 @@ export type Product = {
   fit?: string;
   /** Starting artwork shows a window. The customer can still remove it. */
   window?: boolean;
+  family?: ProductFamily;
 };
 
 export type Category = {
@@ -65,6 +76,7 @@ function listed(input: {
   accent: string;
   studioPack: string;
   fit: string;
+  family: ProductFamily;
   windowed?: boolean;
 }): Product {
   const { windowed, ...rest } = input;
@@ -383,17 +395,23 @@ export const categories: Category[] = [
   {
     slug: "food-packaging",
     name: "Food Packaging",
-    short: "Packs for food that is served, delivered, or sold",
+    short: "Meals, cakes, donuts, cupcakes, and mithai packs",
     description:
-      "Food packaging boxes and sleeves for restaurants, packaged food, and meal brands. Tell us how the food behaves. Grease, heat, and moisture change the material.",
+      "Restaurant boxes, cake cartons by the inch, donut and cupcake packs, mithai boxes, and snack pouches for shops in Pakistan. Grease, heat, and frosting height change the board you need.",
     seoDescription:
-      "Food packaging boxes for restaurants and food brands in Pakistan. Custom sizes, print, and materials, quoted to your specification.",
+      "Food and bakery packaging in Pakistan: burger and biryani boxes, cake boxes by inch, donuts, cupcakes, mithai, and pouches. Custom print and sizes, quoted to order.",
     shape: "food",
     accent: "#c4452d",
     material: "bleach-card",
     studioPack: "food-box",
-    materials: ["bleach-card", "kraft", "coated", "duplex"],
-    customizations: ["Portion size in millimetres", "Food condition: hot, cold, greasy, or dry", "Window or closed face", "Labels for jars, bottles, and wraps"],
+    materials: ["bleach-card", "kraft", "coated", "duplex", "corrugated", "art-paper"],
+    customizations: [
+      "Portion or cake size in millimetres or inches",
+      "Hot, greasy, or chilled food; height including frosting",
+      "Window or solid lid on cakes and pastries",
+      "White board or kraft",
+      "Stand-up pouches for dry snacks and tea",
+    ],
     products: [
       product({
         slug: "takeaway-carton",
@@ -405,6 +423,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "food-box",
+        family: "meals",
         specs: [
           { label: "Structure", value: "Folding food carton" },
           { label: "Must tell us", value: "Portion size and whether the food is hot, greasy, or chilled" },
@@ -424,6 +443,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         material: "kraft",
         studioPack: "folding-carton",
+        family: "snacks",
         specs: [
           { label: "Structure", value: "Printed sleeve" },
           { label: "Fit", value: "Measured to the container you already use" },
@@ -443,6 +463,7 @@ export const categories: Category[] = [
         accent: "#234c38",
         material: "duplex",
         studioPack: "food-box",
+        family: "meals",
         specs: [
           { label: "Structure", value: "Outer carton, inserts only if requested" },
           { label: "Contents", value: "List each component in the quotation notes" },
@@ -461,6 +482,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "food-box",
+        family: "meals",
         specs: [
           { label: "Good for", value: "Burgers, shawarma, sandwiches" },
           { label: "You choose", value: "Size, board colour, and logo" },
@@ -479,6 +501,7 @@ export const categories: Category[] = [
         accent: "#8d2f1c",
         material: "corrugated",
         studioPack: "food-box",
+        family: "meals",
         specs: [
           { label: "Good for", value: "Whole pizzas and slice boxes" },
           { label: "You choose", value: "Inch size and lid print" },
@@ -497,6 +520,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "food-box",
+        family: "meals",
         specs: [
           { label: "Good for", value: "Fries, wedges, nuggets" },
           { label: "You choose", value: "Portion size and print" },
@@ -515,6 +539,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         material: "kraft",
         studioPack: "food-box",
+        family: "meals",
         specs: [
           { label: "Good for", value: "Biryani, pulao, rice bowls" },
           { label: "You choose", value: "Portion height and board" },
@@ -533,6 +558,7 @@ export const categories: Category[] = [
         accent: "#234c38",
         material: "duplex",
         studioPack: "food-box",
+        family: "snacks",
         specs: [
           { label: "Good for", value: "Nimco, dry fruit, packed snacks" },
           { label: "You choose", value: "Weight, print, and board" },
@@ -541,24 +567,6 @@ export const categories: Category[] = [
         materials: ["duplex", "bleach-card", "kraft"],
         printing: printStandard,
         finishing: ["Matte lamination", "Gloss lamination", "No special finishing"],
-      }),
-      product({
-        slug: "sweet-box",
-        name: "Sweet box",
-        summary: "A box for mithai, bakery sweets, or a small gift of desserts.",
-        description: "A custom sweet box with your brand, in white or kraft, with or without a window. Tell us how many pieces go inside. It is quoted, not sold at a fixed online price.",
-        shape: "bakery",
-        accent: "#c4452d",
-        material: "bleach-card",
-        studioPack: "bakery-box",
-        specs: [
-          { label: "Good for", value: "Mithai, barfi, small dessert gifts" },
-          { label: "You choose", value: "Piece count, window, and colours" },
-          { label: "Price", value: "Quoted after size and quantity" },
-        ],
-        materials: ["bleach-card", "kraft", "art-paper"],
-        printing: printStandard,
-        finishing: ["Die-cutting", "Matte lamination", "No special finishing"],
       }),
       listed({
         slug: "stand-up-pouch",
@@ -569,6 +577,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         studioPack: "paper-bag",
         fit: "Snacks, nimco, tea, or spices you weigh yourself",
+        family: "snacks",
       }),
       listed({
         slug: "sandwich-box",
@@ -579,25 +588,9 @@ export const categories: Category[] = [
         accent: "#c4452d",
         studioPack: "food-box",
         fit: "One sandwich, wrap, or roll",
+        family: "meals",
         windowed: true,
       }),
-    ],
-  },
-  {
-    slug: "bakery-packaging",
-    name: "Bakery Packaging",
-    short: "Cake, pastry, and confectionery packs",
-    description:
-      "Bakery packaging boxes for cakes, pastries, and sweets. Height matters. Measure the finished piece, including frosting, before you choose a box.",
-    seoDescription:
-      "Bakery packaging boxes in Pakistan for cakes, pastries, and confectionery. Custom sizes, windows, kraft or white board, quoted to order.",
-    shape: "bakery",
-    accent: "#8d6a3f",
-    material: "kraft",
-    studioPack: "bakery-box",
-    materials: ["kraft", "bleach-card", "art-paper", "duplex"],
-    customizations: ["Height including decoration", "Window or solid lid", "White board or kraft", "Closing stickers"],
-    products: [
       product({
         slug: "cake-box",
         name: "Cake box",
@@ -608,6 +601,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "bakery-box",
+        family: "cakes",
         specs: [
           { label: "Structure", value: "Carton, window optional" },
           { label: "Critical measure", value: "Height of the finished cake" },
@@ -627,6 +621,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         material: "kraft",
         studioPack: "bakery-box",
+        family: "pastries",
         specs: [
           { label: "Structure", value: "Low folding carton" },
           { label: "Pieces", value: "Tell us the count and arrangement" },
@@ -646,6 +641,7 @@ export const categories: Category[] = [
         accent: "#234c38",
         material: "kraft",
         studioPack: "paper-bag",
+        family: "carry",
         specs: [
           { label: "Structure", value: "Paper bag" },
           { label: "Dimensions", value: "Width, gusset, and height" },
@@ -664,6 +660,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "bakery-box",
+        family: "cupcakes",
         specs: [
           { label: "Good for", value: "Cupcakes, by the count you sell" },
           { label: "You choose", value: "Count, window, white or kraft" },
@@ -682,6 +679,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         material: "kraft",
         studioPack: "bakery-box",
+        family: "pastries",
         specs: [
           { label: "Good for", value: "Brownies, bars, slabs" },
           { label: "You choose", value: "How many pieces, and a window or not" },
@@ -700,6 +698,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "bakery-box",
+        family: "donuts",
         specs: [
           { label: "Good for", value: "Donuts and filled doughnuts" },
           { label: "You choose", value: "2, 4, 6, or your own count" },
@@ -718,6 +717,7 @@ export const categories: Category[] = [
         accent: "#234c38",
         material: "kraft",
         studioPack: "bakery-box",
+        family: "pastries",
         specs: [
           { label: "Good for", value: "Cookies, biscuits, gift packs" },
           { label: "You choose", value: "Count, kraft or white, window" },
@@ -736,6 +736,7 @@ export const categories: Category[] = [
         accent: "#8d2f1c",
         material: "bleach-card",
         studioPack: "bakery-box",
+        family: "sweets",
         specs: [
           { label: "Good for", value: "Mithai, barfi, laddu, mixed sweets" },
           { label: "You choose", value: "Weight or piece count, and print" },
@@ -754,6 +755,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         material: "bleach-card",
         studioPack: "bakery-box",
+        family: "pastries",
         specs: [
           { label: "Good for", value: "Cake slices and single pastries" },
           { label: "You choose", value: "Slice height and logo or full print" },
@@ -772,6 +774,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         studioPack: "bakery-box",
         fit: "About a 6 inch / half-pound cake",
+        family: "cakes",
         windowed: true,
       }),
       listed({
@@ -783,6 +786,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         studioPack: "bakery-box",
         fit: "About an 8 inch / 1 pound cake",
+        family: "cakes",
         windowed: true,
       }),
       listed({
@@ -794,6 +798,7 @@ export const categories: Category[] = [
         accent: "#8d2f1c",
         studioPack: "bakery-box",
         fit: "About a 10 inch / 2–3 pound cake",
+        family: "cakes",
         windowed: true,
       }),
       listed({
@@ -805,6 +810,7 @@ export const categories: Category[] = [
         accent: "#161410",
         studioPack: "bakery-box",
         fit: "About a 12 inch / 3–4 pound cake",
+        family: "cakes",
         windowed: true,
       }),
       listed({
@@ -816,6 +822,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         studioPack: "bakery-box",
         fit: "A cake, in a kraft box instead of white",
+        family: "cakes",
         windowed: true,
       }),
       listed({
@@ -827,6 +834,7 @@ export const categories: Category[] = [
         accent: "#c4452d",
         studioPack: "bakery-box",
         fit: "4 cupcakes",
+        family: "cupcakes",
         windowed: true,
       }),
       listed({
@@ -838,6 +846,7 @@ export const categories: Category[] = [
         accent: "#234c38",
         studioPack: "bakery-box",
         fit: "6 cupcakes",
+        family: "cupcakes",
         windowed: true,
       }),
       listed({
@@ -849,6 +858,7 @@ export const categories: Category[] = [
         accent: "#8d2f1c",
         studioPack: "bakery-box",
         fit: "12 cupcakes",
+        family: "cupcakes",
         windowed: true,
       }),
       listed({
@@ -860,6 +870,7 @@ export const categories: Category[] = [
         accent: "#8d6a3f",
         studioPack: "labels",
         fit: "The cake diameter you already use, plus a little extra",
+        family: "carry",
       }),
       listed({
         slug: "wedding-favour-box",
@@ -870,6 +881,7 @@ export const categories: Category[] = [
         accent: "#8d2f1c",
         studioPack: "bakery-box",
         fit: "One favour: sweets, dates, or a small gift",
+        family: "sweets",
       }),
     ],
   },
@@ -1873,7 +1885,6 @@ export const categories: Category[] = [
 
 export const mainCategorySlugs = [
   "food-packaging",
-  "bakery-packaging",
   "window-boxes",
   "lid-boxes",
   "medicine-boxes",

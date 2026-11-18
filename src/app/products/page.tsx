@@ -18,7 +18,7 @@ export default function ProductsPage() {
       <p className="kicker">Packaging</p>
       <h1 className="display mt-3 max-w-4xl text-5xl sm:text-7xl">Pick a pack.</h1>
       <p className="mt-5 max-w-2xl text-lg leading-8 text-ink-soft">
-        Eight kinds of packaging. Open one, choose the box or bag, and send the size for a quote.
+        Seven kinds of packaging. Open one, choose the box or bag, and send the size for a quote.
       </p>
       <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {mainCategories().map((category) => (

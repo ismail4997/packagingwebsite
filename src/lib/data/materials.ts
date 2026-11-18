@@ -43,7 +43,7 @@ export const materials: Material[] = [
       "Can be specified with or without a window",
     ],
     applications: ["Retail cartons", "Bakery boxes", "Cosmetic sleeves", "Product labels on board"],
-    recommended: ["custom-boxes", "food-packaging", "bakery-packaging", "cosmetics-packaging"],
+    recommended: ["custom-boxes", "food-packaging", "cosmetics-packaging"],
     colors: { face: "#F7F4EE", side: "#E4DDD2", top: "#FFFcf8", ink: "#161410" },
   },
   {
@@ -73,7 +73,7 @@ export const materials: Material[] = [
     watchouts: "Expect a shift in printed colour compared with a white sheet. Ask for a proof when colour is critical.",
     advantages: ["Distinctive natural colour", "Works well for bags and bakery packs", "Single-colour print can look deliberate and strong"],
     applications: ["Paper bags", "Shopping bags", "Bakery boxes", "Food sleeves"],
-    recommended: ["paper-bags", "shopping-bags", "bakery-packaging", "food-packaging"],
+    recommended: ["paper-bags", "shopping-bags", "food-packaging"],
     colors: { face: "#C6A36A", side: "#A8844E", top: "#D7B888", ink: "#2A2118" },
   },
   {

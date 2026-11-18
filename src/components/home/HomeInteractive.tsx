@@ -80,7 +80,6 @@ export function ShopCategories() {
 
 const shelves = [
   { slug: "food-packaging", label: "Food boxes" },
-  { slug: "bakery-packaging", label: "Bakery boxes" },
   { slug: "cosmetics-packaging", label: "Cosmetic boxes" },
 ] as const;
 
