@@ -115,6 +115,20 @@ Each route sets a title, description, and canonical path. The root layout adds O
 3. Configure Supabase if quotations must be kept.
 4. `npm run build` then `npm run start`, or deploy on a Node host that supports Next.js.
 
+### Netlify
+
+The repo includes [`netlify.toml`](netlify.toml) with `@netlify/plugin-nextjs`. Connect the GitHub repo and let Netlify build on push.
+
+If you see Netlify’s gray **“Page not found”** card (not the PACKNEXT 404 page):
+
+1. **Deploys** — open the latest deploy. It must **succeed** and the log must show `@netlify/plugin-nextjs` after `npm run build`. If the build failed, fix the error in the log first.
+2. **Site configuration → Build & deploy → Build settings** — base directory empty; build command `npm ci && npm run build` (or leave blank to use `netlify.toml`); **publish directory must be `.next`**, not `public` or the repo root.
+3. **Environment variables** — delete `NETLIFY_NEXT_PLUGIN_SKIP` if it is set to `true`. With the skip flag on, Netlify does not run the Next runtime and `/` 404s.
+4. **Deploys → Trigger deploy → Clear cache and deploy site**.
+5. **Access control** — turn off password / team protection (or use **Make public**) so visitors are not blocked.
+
+`NEXT_PUBLIC_SITE_URL` is set for production in `netlify.toml`; change it when you add a custom domain.
+
 `cacheComponents` is enabled in `next.config.ts`. Do not add a route segment `dynamic` or `runtime` export. Those conflict with that setting. The quotation route is dynamic because it reads the request.
 
 ## Manual configuration still required

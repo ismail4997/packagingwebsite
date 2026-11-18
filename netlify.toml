@@ -1,11 +1,14 @@
 [build]
-  command = "npm run build"
+  command = "npm ci && npm run build"
+  publish = ".next"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
+  # Must stay unset or false — if true, Netlify serves `.next` as static files and `/` 404s.
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
 
 [context.production.environment]
   NEXT_PUBLIC_SITE_URL = "https://brilliant-kleicha-28b570.netlify.app"
